@@ -10,7 +10,11 @@ use Exception;
 
 class BugsnagLogger implements ErrorLogger {
 
-  const BUGSNAG_API = '';
+  private  $apiKey = '';
+
+  function __construct($apiKey = "") {
+    $this->apiKey = $apiKey;
+  }
 
   public function logError(Exception $exception) {
 
@@ -21,7 +25,7 @@ class BugsnagLogger implements ErrorLogger {
       'exception_code' => $exception->getCode()
     ];
 
-    $bugsnag = new Bugsnag_Client(self::BUGSNAG_API);
+    $bugsnag = new Bugsnag_Client($this->apiKey);
     $bugsnag->notifyError($name, $exception->getMessage(), $metadata, 'error');
   }
 }
