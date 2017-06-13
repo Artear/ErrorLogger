@@ -1,0 +1,26 @@
+{
+  "name": "Artear/ErrorLogger",
+  "description": "A PHP Library to Track Errors",
+  "type": "library",
+  "license": "MIT",
+  "version": "1.0.1",
+  "authors": [
+    {
+      "name": "ARTEAR",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.2.0"
+  },
+  "require-dev": {
+    "satooshi/php-coveralls": "dev-master",
+    "phpunit/phpcov": "3.1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "ErrorLogger\\": "src/",
+      "ErrorLoggerTest\\": "test/"
+    }
+  }
+}

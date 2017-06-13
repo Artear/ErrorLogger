@@ -1,0 +1,7 @@
+/build/
+/report/
+/vendor/
+/composer.lock
+/.idea/
+/src/config/config.ini
+.gitignore

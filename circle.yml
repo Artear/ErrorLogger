@@ -1,0 +1,22 @@
+machine:
+  timezone: America/Los_Angeles
+
+dependencies:
+  cache_directories:
+    - vendor
+  override:
+    - echo "date.timezone = America/Los_Angeles" >> /opt/circleci/php/$(phpenv global)/etc/php.ini
+    - mkdir -p build/logs
+    - mkdir -p build/cov
+    - composer install --dev --no-interaction
+  post:
+    #downgrade phpunit on CI to 5.5.7
+    - wget https://phar.phpunit.de/phpunit-5.5.7.phar
+    - chmod +x phpunit-5.5.7.phar
+    - mv phpunit-5.5.7.phar $HOME/phpunit
+
+test:
+  override:
+    - $HOME/phpunit
+  post:
+    - vendor/bin/coveralls -v
