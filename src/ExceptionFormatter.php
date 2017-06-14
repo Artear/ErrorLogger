@@ -19,10 +19,16 @@ class ExceptionFormatter {
     $msg .= str_repeat('=', 50) . "\n";
     $msg .= '</br>';
     $i = 1;
-    foreach ($trace as $node) {
-      $msg .= "$i. " . basename($node['file']) . ':' . $node['function'] . '(' . $node['line'] . ')</br>';
-      $i++;
+
+    if (!empty($trace)) {
+      foreach ($trace as $node) {
+        if (isset($node['file'])) {
+          $msg .= "$i. " . basename($node['file']) . ':' . $node['function'] . '(' . $node['line'] . ')</br>';
+          $i++;
+        }
+      }
     }
+
     $msg .= str_repeat('=', 50) . "\n";
     $msg .= '</br>';
 

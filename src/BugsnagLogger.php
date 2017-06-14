@@ -25,6 +25,16 @@ class BugsnagLogger implements ErrorLogger {
       'exception_code' => $exception->getCode()
     ];
 
+    $this->notifyError($exception, $name, $metadata);
+  }
+
+  /**
+   * @param \Exception $exception
+   * @param $name
+   * @param $metadata
+   * @codeCoverageIgnore
+   */
+  public function notifyError(Exception $exception, $name, $metadata) {
     $bugsnag = new Bugsnag_Client($this->apiKey);
     $bugsnag->notifyError($name, $exception->getMessage(), $metadata, 'error');
   }

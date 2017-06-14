@@ -6,6 +6,10 @@ use Exception;
 
 class NewrelicLogger implements ErrorLogger {
 
+  /**
+   * @param \Exception $exception
+   * @codeCoverageIgnore
+   */
   public function logError(Exception $exception) {
 
     global $conf;
